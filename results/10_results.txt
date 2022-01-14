@@ -45,3 +45,4 @@ mean_number_of_generations: 6365.8
 std_number_of_generations: 4612.909657809387
 mean_elapsed_time: 8.555553480000025
 std_elapsed_time: 5.968429446604741
+
