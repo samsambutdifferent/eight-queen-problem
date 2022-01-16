@@ -1,6 +1,7 @@
 
 from BasicGaAlgorithim import (
                                 fitness_function,
+                                generate_population
                             )
 
 
@@ -56,3 +57,29 @@ def _tournament_selection(population, tournament_population_size):
     srted = sorted(fitness_socres, key=lambda x: x[1], reverse=True)
 
     return srted[0][0], srted[1][0]
+
+
+### ELITISM
+
+import math
+from random import sample
+
+def elitism(population, fitness_scores, elitism_ratio, size_of_population):
+    number_of_elites = math.floor(size_of_population * elitism_ratio)
+    pop_fitness = [(population[i], fitness_scores[i]) for i in range(len(population))]
+    sorted_by_score = sorted(pop_fitness, key=lambda x: x[1], reverse=True)
+
+    return [sorted_by_score[i][0] for i in range(number_of_elites)]
+
+
+def remove_parent_pairs(population, elitism_ratio, size_of_population):
+    """
+    """
+    number_to_remove = math.floor(size_of_population * elitism_ratio)
+
+    return _remove_n_random_values_from_list(population, number_to_remove)
+
+
+def _remove_n_random_values_from_list(values, number_to_remove):
+    remove = set(sample(range(len(values)),number_to_remove))
+    return [value for index,value in enumerate(values) if not index in remove]
