@@ -3,12 +3,12 @@
 
 import random
 
-def _generate_genotype(number_of_queens):
-    return  [random.randrange(number_of_queens) for num in range(number_of_queens )]
-
-
 def generate_population(number_of_queens=8, size_of_population=19):
         return [_generate_genotype(number_of_queens) for _ in range(size_of_population)]
+
+
+def _generate_genotype(number_of_queens):
+    return  [random.randrange(number_of_queens) for num in range(number_of_queens )]
 
 
 ##### FITNESS_FUCTION
@@ -132,3 +132,4 @@ def calculate_perfect_score(number_of_queens):
                     number_of_queens,
                     2
                 )
+
