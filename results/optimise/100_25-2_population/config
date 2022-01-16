@@ -1,0 +1,5 @@
+('NUMBER_OF_QUEENS', 8)
+('SIZE_OF_POPULATION', 25)
+('MUTATION_FREQUENCY', 8)
+('PERFECT_SCORE', 28.0)
+('test_file', 'test_populations_25')
