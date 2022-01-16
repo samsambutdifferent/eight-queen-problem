@@ -1,4 +1,8 @@
 
+from BasicGaAlgorithim import (
+                                fitness_function,
+                            )
+
 
 ### CROSSOVER
 
@@ -28,3 +32,27 @@ def _crssover(parent_one, parent_two, cross_over_index_one, cross_over_index_two
     child = parent_one[:cross_over_index_one] + parent_two[cross_over_index_one:cross_over_index_two] + parent_one[cross_over_index_two:]
     
     return child
+
+
+### SELECTION
+
+import random
+import math
+
+def selection(population, size_of_population, tournament_population_size):
+    """return a list of selected pairs"""
+
+    selected = []
+
+    for _ in range(size_of_population):
+        selected.append(_tournament_selection(population, tournament_population_size))
+
+    return selected
+    
+
+def _tournament_selection(population, tournament_population_size):
+    tournament_population = random.choices(population=population, k=tournament_population_size)
+    fitness_socres = [(entrant, fitness_function(entrant)) for entrant in tournament_population]
+    srted = sorted(fitness_socres, key=lambda x: x[1], reverse=True)
+
+    return srted[0][0], srted[1][0]
