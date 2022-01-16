@@ -16,10 +16,14 @@ def _generate_genotype(number_of_queens):
 def fitness_function(genotype):
     """finds a score based off the number of queens which are not being attacked
     """
+
+
+
     fitness_score = 0
 
     for i_p, phenotype in enumerate(genotype):
         for i_o_p, other_phenotype in enumerate(genotype):
+
             if phenotype == other_phenotype:
                 # is on the same row
                 continue
@@ -120,10 +124,11 @@ def mutation(population, mutation_frequency, number_of_queens):
 
 from scipy import special
 
-def check_for_perfect_genotype(population, fitness_scores, perfect_score):
-    for i,score in enumerate(fitness_scores):
-        if score == perfect_score:
-            return population[i]
+def check_for_perfect_genotype(population, perfect_score):
+
+    for pop in population:
+        if fitness_function(pop) == perfect_score:
+            return pop
 
     return []
 
