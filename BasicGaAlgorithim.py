@@ -16,21 +16,17 @@ def _generate_genotype(number_of_queens):
 def fitness_function(genotype):
     """finds a score based off the number of queens which are not being attacked
     """
-
-
-
     fitness_score = 0
 
-    for i_p, phenotype in enumerate(genotype):
-        for i_o_p, other_phenotype in enumerate(genotype):
-
-            if phenotype == other_phenotype:
+    for i_p, gene in enumerate(genotype):
+        for i_o_p, other_gene in enumerate(genotype):
+            if gene == other_gene:
                 # is on the same row
                 continue
-            if i_p - phenotype == i_o_p - other_phenotype:
+            if i_p - gene == i_o_p - other_gene:
                 # is diagonally attacked
                 continue
-            if i_p + phenotype == i_o_p + other_phenotype:
+            if i_p + gene == i_o_p + other_gene:
                 # is diagonally attacked
                 continue
             fitness_score += 1
@@ -42,14 +38,6 @@ def fitness_function(genotype):
 
 def selection(population, fitness_scores, size_of_population):
     """return a list of selected pairs"""
-    ### TODO if the fitness score is high they will always be selected
-    ### should they only be chosen once
-    ### or could use tournament selection
-    ### book claims that they can be selecte multilpe times
-    ### so should be fine, but maybe the weighted choice is too high
-    ### leave this as is and look at tournament selection
-    ### for optimisation
-    ### https://brandinho.github.io/genetic-algorithm/
 
     selected = []
     for _ in range(size_of_population):
@@ -132,9 +120,18 @@ def check_for_perfect_genotype(population, perfect_score):
 
     return []
 
-def calculate_perfect_score(number_of_queens):
-    return special.comb(
-                    number_of_queens,
-                    2
-                )
 
+def calculate_perfect_score(number_of_queens):
+    """finds perfect docre for a number of queens
+    """
+    g = [0 for _ in range(number_of_queens)]
+
+    fitness_score =0
+
+    for i_p, gene in enumerate(g):
+        for i_o_p, other_gene in enumerate(g):
+            if i_p != i_o_p:
+                fitness_score += 1
+                continue
+    
+    return fitness_score / 2
