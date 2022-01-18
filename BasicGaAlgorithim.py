@@ -110,8 +110,6 @@ def mutation(population, mutation_frequency, number_of_queens):
 
 ### HELPER
 
-from scipy import special
-
 def check_for_perfect_genotype(population, perfect_score):
 
     for pop in population:
